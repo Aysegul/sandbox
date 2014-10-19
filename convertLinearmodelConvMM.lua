@@ -1,7 +1,7 @@
 --[[Author: Aysegul Dundar (adundar@purdue.edu)
 -- This file converts Linear layers in the network to ConvolutionMM
 -- so in the demo, you can step in the image.
-Please update the input size based on your network.
+--   Please update the input size based on your network.
 -- ]]
 
 require 'nnx'
@@ -36,16 +36,13 @@ function convert(network)
 
             input = tmp_module:forward(input)
 
-
          elseif network.modules[i].__typename == 'nn.Dropout' then
             -- do nothing
          else
-
             new_network:add(network.modules[i])
             input = network.modules[i]:forward(input)
          end
       end
-      print(input:size())
    end
 end
 convert(network)
